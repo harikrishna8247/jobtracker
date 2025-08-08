@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Job Application Tracker</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <header class="header card">
+      <h1>Job Application Tracker</h1>
+      <div class="controls">
+        <div class="control">
+          <label for="targetInput">Daily Target</label>
+          <input id="targetInput" type="number" min="1" step="1" value="50" />
+          <button id="saveTargetBtn" class="btn ghost">Save</button>
+        </div>
+        <div class="control">
+          <label for="datePicker">Day</label>
+          <input id="datePicker" type="date"/>
+        </div>
+        <div class="control">
+          <label for="themeSelect">Theme</label>
+          <select id="themeSelect">
+            <option value="mono">Ultra Mono</option>
+          </select>
+        </div>
+      </div>
+    </header>
+
+    <section class="card add-form">
+      <input id="companyInput" type="text" placeholder="Company name *" />
+      <input id="roleInput" type="text" placeholder="Role / Position (optional)"/>
+      <input id="linkInput" type="url" placeholder="Job link (optional)" />
+      <button id="addBtn" class="btn primary">Add Application</button>
+      <p class="hint">Press <kbd>Enter</kbd> to add quickly. Timestamp is automatic.</p>
+    </section>
+
+    <section class="stats">
+      <div class="stat card">
+        <div class="label">Applied Today</div>
+        <div id="appliedCount" class="big-num">0</div>
+      </div>
+      <div class="stat card">
+        <div class="label">Remaining</div>
+        <div id="remainingCount" class="big-num">50</div>
+      </div>
+      <div class="stat card progress-card">
+        <div class="label">Progress</div>
+        <div class="progress">
+          <div id="progressFill" class="fill"></div>
+        </div>
+        <div id="progressLabel" class="progress-label">0%</div>
+      </div>
+    </section>
+
+    <section class="card list">
+      <div class="list-toolbar">
+        <div class="search-group">
+          <input id="searchInput" type="text" placeholder="Search company or role..." />
+          <label class="checkbox"><input id="searchAllDates" type="checkbox"/> Search all dates</label>
+          <button id="searchBtn" class="btn ghost">Search</button>
+        </div>
+        <div class="action-group">
+          <button id="exportBtn" class="btn ghost">Export CSV</button>
+          <button id="exportMonthBtn" class="btn ghost">Export Month</button>
+          <button id="clearDayBtn" class="btn danger">Clear Day</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Company</th>
+              <th>Role</th>
+              <th>Link</th>
+              <th>Time</th>
+              <th style="width:200px">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+        <div id="emptyState" class="empty">No applications yet.</div>
+      </div>
+    </section>
+
+    <section id="searchResults" class="card" style="display:none;">
+      <div class="list-toolbar">
+        <h2 class="section-title">Search Results</h2>
+        <div class="action-group">
+          <button id="hideResultsBtn" class="btn ghost">Hide</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th><th>Company</th><th>Role</th><th>Link</th><th>Status</th><th>Time</th><th>Go</th>
+            </tr>
+          </thead>
+          <tbody id="resultsBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <small>Data is stored locally in your browser. Host anywhere (GitHub Pages, Netlify). No backend.</small>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
