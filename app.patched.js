@@ -142,10 +142,9 @@
   setInterval(()=>{
     const t = today();
     if (t !== _lastDayKey) {
-      const previous = _lastDayKey;
       _lastDayKey = t;
       // Only auto-advance if the user hasn't manually set a different date
-      if (!datePicker.value || datePicker.value === previous) {
+      if (!datePicker.value || datePicker.value === '' || datePicker.value < t || datePicker.value === _lastDayKey) {
         datePicker.value = t;
         render();
       }
